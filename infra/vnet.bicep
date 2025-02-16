@@ -39,29 +39,16 @@ resource nsgUnsecure 'Microsoft.Network/networkSecurityGroups@2021-02-01' = {
   properties: {
     securityRules: [
       {
-        name: 'AllowAllInbound'
+        name: 'AllowRDP'
         properties: {
           priority: 1000
           direction: 'Inbound'
           access: 'Allow'
-          protocol: '*'
+          protocol: 'TCP'
           sourceAddressPrefix: '*'
           sourcePortRange: '*'
           destinationAddressPrefix: '*'
-          destinationPortRange: '*'
-        }
-      }
-      {
-        name: 'AllowAllOutbound'
-        properties: {
-          priority: 1000
-          direction: 'Outbound'
-          access: 'Allow'
-          protocol: '*'
-          sourceAddressPrefix: '*'
-          sourcePortRange: '*'
-          destinationAddressPrefix: '*'
-          destinationPortRange: '*'
+          destinationPortRange: '3389'
         }
       }
     ]
