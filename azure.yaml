@@ -1,30 +1,3 @@
-name: cohack-project
-metadata:
-  description: Azure project for deploying a virtual network, managed identity, custom roles, and a virtual machine.
-  author: Your Name
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
-services:
-  infra:
-    type: infra
-    path: ./infra/main.bicep
-    target: subscription
-
-variables:
-  location: northeurope
-  adminUsername: cohackadmin
-  customRoleName: Resource Policy Contributor - Custom
-  customRoleDescription: Custom role for managing resource policies.
-
-parameters:
-  location: $(location)
-  adminUsername: $(adminUsername)
-  adminPassword: $(ADMIN_PASSWORD)
-  customRoleName: $(customRoleName)
-  customRoleDescription: $(customRoleDescription)
-
-environmentFiles:
-  - .env
-
-postprovision:
-  # Run a script to perform additional configurations
-  - bash ./scripts/setup.sh $(location)
+name: azd-hacking-game
