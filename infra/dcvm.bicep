@@ -88,6 +88,7 @@ resource dscExtension 'Microsoft.Compute/virtualMachines/extensions@2021-03-01' 
     settings: {
       configuration: {
         url: 'https://github.com/koenraadhaedens/AZD-Hacking-Game/raw/refs/heads/main/infra/CreateADPDC.zip'
+        script: 'CreateADPDC.ps1'
         ConfigurationFunction: 'CreateADPDC.ps1\\CreateADPDC'
       }
       configurationArguments: {
