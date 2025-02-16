@@ -13,12 +13,6 @@ param location string
 @description('Password for the Windows VM')
 param HackVMPassword string //no value specified, so user will get prompted for it during deployment
 
-// Tags that should be applied to all resources.
-// 
-// Note that 'azd-service-name' tags should be applied separately to service host resources.
-// Example usage:
-//   tags: union(tags, { 'azd-service-name': <service name in azure.yaml> })
-
 var tags = {
   'azd-env-name': environmentName
 }
@@ -60,7 +54,7 @@ module dcvm './dcvm.bicep' = {
     location: location
     vnetName: '${environmentName}-vnet'
     subnetName: 'subnet-secure'
-    privateIP: '10.1.0.250'
+    privateIP: '10.0.1.250'
     domainName: 'contoso.com'
     adminUsername: 'DCadmin'
     adminPassword: 'SecurePass123'

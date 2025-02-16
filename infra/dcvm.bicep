@@ -5,6 +5,7 @@ param subnetName string
 param privateIP string
 param domainName string
 param adminUsername string
+@secure()
 param adminPassword string
 
 resource publicIP 'Microsoft.Network/publicIPAddresses@2021-02-01' = {
@@ -31,9 +32,14 @@ resource nic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
           publicIPAddress: {
             id: publicIP.id
           }
+          }
         }
-      }
     ]
+    dnsSettings: {
+      dnsServers: [
+        '10.0.1.250'
+      ] 
+    }
   }
 }
 
@@ -42,7 +48,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
   location: location
   properties: {
     hardwareProfile: {
-      vmSize: 'Standard_DS1_v2'
+      vmSize: 'Standard_B2ms'
     }
     osProfile: {
       computerName: 'DCvm'
@@ -71,7 +77,8 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
 }
 
 resource domainControllerExtension 'Microsoft.Compute/virtualMachines/extensions@2021-03-01' = {
-  name: '${vm.name}/ADDomainExtension'
+  parent: vm
+  name: 'ADDomainExtension'
   location: location
   properties: {
     publisher: 'Microsoft.Compute'
@@ -80,14 +87,6 @@ resource domainControllerExtension 'Microsoft.Compute/virtualMachines/extensions
     autoUpgradeMinorVersion: true
     settings: {
       Name: domainName
-      OUPath: 'OU=Domain Controllers,DC=contoso,DC=com'
-      DnsIpAddresses: [
-        privateIP
-      ]
-    }
-    protectedSettings: {
-      AdminUsername: adminUsername
-      AdminPassword: adminPassword
-    }
   }
+}
 }
