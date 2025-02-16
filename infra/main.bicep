@@ -35,6 +35,9 @@ module vnet './vnet.bicep' = {
 module hackvm './hackvm.bicep' = {
   name: 'hackvmDeployment'
   scope: resourceGroup(rg.name)
+  dependsOn: [
+    vnet
+  ]
   params: {
     environmentName: environmentName
     location: location
@@ -49,6 +52,9 @@ module hackvm './hackvm.bicep' = {
 module dcvm './dcvm.bicep' = {
   name: 'dcvmDeployment'
   scope: resourceGroup(rg.name)
+  dependsOn: [
+    vnet
+  ]
   params: {
     environmentName: environmentName
     location: location
