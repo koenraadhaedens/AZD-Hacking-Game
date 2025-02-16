@@ -83,18 +83,22 @@ resource dscExtension 'Microsoft.Compute/virtualMachines/extensions@2021-03-01' 
   properties: {
     publisher: 'Microsoft.Powershell'
     type: 'DSC'
-    typeHandlerVersion: '2.76'
+    typeHandlerVersion: '2.19'
     autoUpgradeMinorVersion: true
     settings: {
-      configuration: {
-        url: 'https://github.com/koenraadhaedens/AZD-Hacking-Game/raw/refs/heads/main/infra/CreateADPDC.zip'
-        script: 'CreateADPDC.ps1'
-        ConfigurationFunction: 'CreateADPDC.ps1\\CreateADPDC'
+      ModulesUrl: 'https://github.com/blogonsecurity/vm-scripts/raw/refs/heads/main/CreateADPDC.zip'
+      ConfigurationFunction: 'CreateADPDC.ps1\\CreateADPDC'
+      Properties: {
+        DomainName: domainName
+        AdminCreds: {
+          UserName: adminUsername
+          Password: 'PrivateSettingsRef:AdminPassword'
+        }
       }
-      configurationArguments: {
-        domainName: domainName
-        adminUsername: adminUsername
-        adminPassword: adminPassword
+    }
+    protectedSettings: {
+      Items: {
+        AdminPassword: adminPassword
       }
     }
   }
