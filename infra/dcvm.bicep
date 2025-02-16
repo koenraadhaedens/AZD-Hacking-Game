@@ -86,7 +86,7 @@ resource dscExtension 'Microsoft.Compute/virtualMachines/extensions@2021-03-01' 
     typeHandlerVersion: '2.19'
     autoUpgradeMinorVersion: true
     settings: {
-      ModulesUrl: 'https://github.com/blogonsecurity/vm-scripts/raw/refs/heads/main/CreateADPDC.zip'
+      ModulesUrl: 'https://github.com/koenraadhaedens/AZD-Hacking-Game/raw/refs/heads/main/infra/CreateADPDC.zip'
       ConfigurationFunction: 'CreateADPDC.ps1\\CreateADPDC'
       Properties: {
         DomainName: domainName
