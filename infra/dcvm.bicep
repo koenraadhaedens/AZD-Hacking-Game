@@ -76,4 +76,26 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
   }
 }
 
-
+resource dscExtension 'Microsoft.Compute/virtualMachines/extensions@2021-03-01' = {
+  parent: vm
+  name: 'DSC'
+  location: location
+  properties: {
+    publisher: 'Microsoft.Powershell'
+    type: 'DSC'
+    typeHandlerVersion: '2.76'
+    autoUpgradeMinorVersion: true
+    settings: {
+      configuration: {
+        url: 'https://<your-storage-account>.blob.core.windows.net/<your-container>/DomainController.ps1.zip'
+        script: 'DomainController.ps1'
+        function: 'DomainController'
+      }
+      configurationArguments: {
+        domainName: domainName
+        adminUsername: adminUsername
+        adminPassword: adminPassword
+      }
+    }
+  }
+}
