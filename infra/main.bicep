@@ -51,3 +51,18 @@ module hackvm './hackvm.bicep' = {
     HackVMPassword: HackVMPassword
   }
 }
+
+module dcvm './dcvm.bicep' = {
+  name: 'dcvmDeployment'
+  scope: resourceGroup(rg.name)
+  params: {
+    environmentName: environmentName
+    location: location
+    vnetName: '${environmentName}-vnet'
+    subnetName: 'subnet-secure'
+    privateIP: '10.1.0.250'
+    domainName: 'contoso.com'
+    adminUsername: 'DCadmin'
+    adminPassword: 'SecurePass123'
+  }
+}
