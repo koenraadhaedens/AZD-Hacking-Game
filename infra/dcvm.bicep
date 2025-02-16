@@ -35,11 +35,6 @@ resource nic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
           }
         }
     ]
-    dnsSettings: {
-      dnsServers: [
-        '10.0.1.250'
-      ] 
-    }
   }
 }
 
