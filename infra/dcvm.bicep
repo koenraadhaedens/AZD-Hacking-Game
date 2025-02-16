@@ -87,9 +87,8 @@ resource dscExtension 'Microsoft.Compute/virtualMachines/extensions@2021-03-01' 
     autoUpgradeMinorVersion: true
     settings: {
       configuration: {
-        url: 'https://<your-storage-account>.blob.core.windows.net/<your-container>/DomainController.ps1.zip'
-        script: 'DomainController.ps1'
-        function: 'DomainController'
+        url: 'https://github.com/koenraadhaedens/AZD-Hacking-Game/raw/refs/heads/main/infra/CreateADPDC.zip'
+        ConfigurationFunction: 'CreateADPDC.ps1\\CreateADPDC'
       }
       configurationArguments: {
         domainName: domainName
