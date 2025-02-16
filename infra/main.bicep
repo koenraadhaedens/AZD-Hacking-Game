@@ -9,6 +9,10 @@ param environmentName string
 @description('Primary location for all resources')
 param location string
 
+@secure()
+@description('Password for the Windows VM')
+param HackVMPassword string //no value specified, so user will get prompted for it during deployment
+
 // Tags that should be applied to all resources.
 // 
 // Note that 'azd-service-name' tags should be applied separately to service host resources.
@@ -32,4 +36,18 @@ module vnet './vnet.bicep' = {
     environmentName: environmentName
     location: location
     }
+}
+
+module hackvm './hackvm.bicep' = {
+  name: 'hackvmDeployment'
+  scope: resourceGroup(rg.name)
+  params: {
+    environmentName: environmentName
+    location: location
+    vnetName: '${environmentName}-vnet'
+    subnetName: 'subnet-unsecure'
+    privateIP: '10.0.0.100'
+    hackeruser: 'hacker1'
+    HackVMPassword: HackVMPassword
+  }
 }
