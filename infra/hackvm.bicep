@@ -42,7 +42,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
   location: location
   properties: {
     hardwareProfile: {
-      vmSize: 'Standard_DS1_v2'
+      vmSize: 'Standard_B2ms'
     }
     osProfile: {
       computerName: 'HackVm'
