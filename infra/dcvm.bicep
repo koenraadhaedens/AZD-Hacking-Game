@@ -76,16 +76,4 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
   }
 }
 
-resource domainControllerExtension 'Microsoft.Compute/virtualMachines/extensions@2021-03-01' = {
-  parent: vm
-  name: 'ADDomainExtension'
-  location: location
-  properties: {
-    publisher: 'Microsoft.Compute'
-    typeHandlerVersion: '1.3'
-    autoUpgradeMinorVersion: true
-    settings: {
-      Name: domainName
-  }
-}
-}
+
