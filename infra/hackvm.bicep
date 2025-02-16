@@ -53,7 +53,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
       imageReference: {
         publisher: 'MicrosoftWindowsDesktop'
         offer: 'Windows-11'
-        sku: 'win11-21h2-pro'
+        sku: 'win11-23h2-pron'
         version: 'latest'
       }
       osDisk: {
