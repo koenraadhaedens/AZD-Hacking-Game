@@ -24,3 +24,12 @@ resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   location: location
   tags: tags
 }
+
+module vnet './vnet.bicep' = {
+  scope: rg
+  name: 'vnetDeployment'
+  params: {
+    environmentName: environmentName
+    location: location
+    }
+}
