@@ -82,7 +82,6 @@ resource domainControllerExtension 'Microsoft.Compute/virtualMachines/extensions
   location: location
   properties: {
     publisher: 'Microsoft.Compute'
-    type: 'JsonADDomainExtension'
     typeHandlerVersion: '1.3'
     autoUpgradeMinorVersion: true
     settings: {
